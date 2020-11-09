@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import logo from '../logo.svg';
+import logo from '../logo.png';
 
 import {
   Button,
@@ -42,7 +42,7 @@ class Navigation extends Component {
             >
               <Container>
                 <Menu.Item className="logo">
-                  <Image src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" size='tiny' />
+                  <Image src={logo} size='large' />
                 </Menu.Item>
                 <Menu.Item as='a' active>
                   Startseite
