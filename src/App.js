@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import 'semantic-ui-css/semantic.min.css';
 import './App.css';
+
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+import Articles from './pages/Articles';
+import Clock from './templates/Clock';
+import Navigation from './templates/Navigation';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hallo Stefanija
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <Navigation />
+      <Route path={["/", "/home"]} component={Articles} />
+      <Route path="/clock" component={Clock} />
+      <Route path="/btn">
+        Button
+      </Route>
+    </Router>
   );
 }
 
