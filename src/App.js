@@ -4,18 +4,16 @@ import './App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import Home from './pages/Home';
-import Clock from './templates/Clock';
 import Navigation from './templates/Navigation';
+import Footer from './templates/Footer';
 
 function App() {
   return (
     <Router>
-    <Navigation />
-      <Route path={["/", "/home"]} component={Home} />
+      <Navigation />
+      <Route exact path={["/", "/home"]} component={Home} />
       <Route path="/clock" component={Clock} />
-      <Route path="/btn">
-        Button
-      </Route>
+      <Footer />
     </Router>
   );
 }
