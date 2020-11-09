@@ -35,7 +35,7 @@ class Navigation extends Component {
           >
             <Menu
               fixed={fixed ? 'top' : null}
-              inverted={!fixed}
+              inverted="true"
               pointing={!fixed}
               secondary={!fixed}
               size='large'
@@ -51,7 +51,7 @@ class Navigation extends Component {
                 <Menu.Item as='a'>User</Menu.Item>
                 <Menu.Item as='a'>Hilfe</Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
+                  <Button as='a' inverted="true">
                     Anmelden
                   </Button>
                 </Menu.Item>
