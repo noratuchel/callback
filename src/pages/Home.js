@@ -22,7 +22,7 @@ function Home() {
             <PageNav />
           </Grid.Column>
 
-          <Grid.Column width={12}>
+          <Grid.Column width={12} textAlign="left">
             <Articles />
           </Grid.Column>
         </Grid.Row>

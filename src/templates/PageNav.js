@@ -2,7 +2,9 @@ import React from 'react';
 
 import {
   Segment,
-  List
+  List,
+  Button,
+  Icon
 } from 'semantic-ui-react';
 
 class PageItem extends React.Component {
@@ -41,11 +43,17 @@ class PageNav extends React.Component {
 
   render() {
     return (
-      <Segment inverted>
-        <List divided inverted relaxed>
-          { this.state.pages }
-        </List>
-      </Segment>
+      <div>
+        <Segment inverted>
+          <List divided inverted relaxed>
+            { this.state.pages }
+          </List>
+        </Segment>
+
+        <Button style={{width:"100%"}} color='grey' inverted>
+          <Icon name='add' /> Post erstellen
+        </Button>
+      </div>
     );
   }
 }
