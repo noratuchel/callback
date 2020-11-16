@@ -2,11 +2,8 @@ import Articles from '../templates/Articles';
 import PageNav from '../templates/PageNav';
 
 import {
-  Button,
-  Container,
   Segment,
   Grid,
-  Visibility,
 } from 'semantic-ui-react';
 
 function Home() {
