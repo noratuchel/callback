@@ -9,6 +9,8 @@ import {
   Menu,
   Segment,
   Visibility,
+  Input,
+  Divider,
 } from 'semantic-ui-react';
 
 class Navigation extends Component {
@@ -35,23 +37,26 @@ class Navigation extends Component {
           >
             <Menu
               fixed={fixed ? 'top' : null}
-              inverted="true"
+              inverted
               pointing={!fixed}
               secondary={!fixed}
               size='large'
             >
               <Container>
-                <Menu.Item className="logo">
+                <Menu.Item className="logo" as="a" href="/">
                   <Image src={logo} size='large' />
                 </Menu.Item>
-                <Menu.Item as='a' active>
+                <Menu.Item as='a' href="/" active>
                   Startseite
                 </Menu.Item>
                 <Menu.Item as='a'>Seiten</Menu.Item>
                 <Menu.Item as='a'>User</Menu.Item>
                 <Menu.Item as='a'>Hilfe</Menu.Item>
+
                 <Menu.Item position='right'>
-                  <Button as='a' inverted="true">
+                  <Input inverted icon='search' placeholder='Suche...' style={{marginRight: "30px"}}/>
+
+                  <Button as='a' inverted>
                     Anmelden
                   </Button>
                 </Menu.Item>
