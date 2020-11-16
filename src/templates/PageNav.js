@@ -1,16 +1,20 @@
 import React from 'react';
 
+import API from '../system/ApiConnector.js';
+
 import {
   Segment,
   List,
   Button,
-  Icon
+  Icon,
+  Loader,
+  Header,
 } from 'semantic-ui-react';
 
 class PageItem extends React.Component {
   render() {
     return (
-      <List.Item as="a">
+      <List.Item as="a" href={"/page/" + this.props.page} page={ this.props.page } key={ this.props.page }>
         <List.Content>
           <List.Header>{ this.props.name }</List.Header>
         </List.Content>
@@ -24,19 +28,30 @@ class PageNav extends React.Component {
     super(props);
 
     this.state = {
+      loading: true,
       pages: []
     };
-
-    this.createItem("Home");
-    this.createItem("Community");
-    this.createItem("FAQ");
-    this.createItem("Help");
   }
 
-  createItem(item) {
+  componentDidMount() {
+    let obj = this;
+
+    API.getBlog(function(res) {
+      API.getPages(res.id, function(pages) {
+        for (let i in pages.items) {
+          let el = pages.items[i];
+          obj.createItem(el.title, el.id);
+        }
+      })
+    });
+  }
+
+  createItem(item, id) {
     let pages = this.state.pages;
-    pages.push(<PageItem name={item} />);
+    pages.push(<PageItem name={item} page={id} key={id} />);
+
     this.setState({
+      loading: false,
       pages: pages
     });
   }
@@ -44,13 +59,15 @@ class PageNav extends React.Component {
   render() {
     return (
       <div>
-        <Segment inverted>
+        <Segment inverted style={{minHeight: "0"}}>
+          <Header as='h3'>Unterseiten</Header>
+          <Loader size="small" active={this.state.loading}/>
           <List divided inverted relaxed>
             { this.state.pages }
           </List>
         </Segment>
 
-        <Button style={{width:"100%"}} color='grey' inverted>
+        <Button style={{width:"100%"}} color='grey' inverted={true}>
           <Icon name='add' /> Post erstellen
         </Button>
       </div>
