@@ -2,14 +2,9 @@ import React from 'react';
 import logo from '../logo.png';
 
 import {
-  Button,
   Container,
   Segment,
-  Grid,
-  Visibility,
-  Header,
   List,
-  Divider,
   Image
 } from 'semantic-ui-react';
 
