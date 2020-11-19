@@ -8,6 +8,7 @@ import {
   Icon,
   Card,
   Comment,
+  Label,
 } from 'semantic-ui-react';
 
 import API from '../system/ApiConnector.js';
@@ -59,6 +60,10 @@ class Article extends React.Component {
     API.getBlog(function(blog) {
       API.getArticle(blog.id, comp.props.match.params.article, function(res) {
         API.getComments(blog.id, res.id, function(comments) {
+          if (!comments) {
+            comments = [];
+          }
+
           let total = comments.length;
           let commentsSorted = {};
 
@@ -97,10 +102,16 @@ class Article extends React.Component {
   render() {
     let author = "";
     let date = "";
+    let labels = [];
 
     if (!this.state.loading) {
       author = this.state.article.author.displayName;
       date = new Date(this.state.article.published).toLocaleDateString("de-DE");
+      labels = this.state.article.labels;
+
+      if (!labels) {
+        labels = [];
+      }
     }
 
     return (
@@ -122,6 +133,9 @@ class Article extends React.Component {
                   <Card.Content header={this.state.article.title} />
                   <Card.Content>
                     <Card.Description dangerouslySetInnerHTML={{ __html: this.state.article.content }} />
+                    <Card.Description style={{marginTop: "25px"}}>{labels.map(function(tag){
+                      return <Label key={tag}><Icon name='hashtag' />{tag}</Label>
+                    })}</Card.Description>
                   </Card.Content>
 
                   <Card.Content extra>
