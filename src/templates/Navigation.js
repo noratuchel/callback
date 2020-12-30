@@ -1,71 +1,87 @@
-import React, { Component } from 'react';
-
-import logo from '../logo.png';
-
+import React, { useContext, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import {
   Button,
   Container,
   Image,
+  Input,
   Menu,
   Segment,
   Visibility,
-  Input,
-  Divider,
-} from 'semantic-ui-react';
+} from "semantic-ui-react";
+import { AuthContext } from "../Auth.js";
+import app from "../base.js";
+import logo from "../logo.png";
 
-class Navigation extends Component {
-  state = {};
+const Navigation = (props) => {
+  const [hideFixedMenu, sethideFixedMenu] = useState({ fixed: false });
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
-  hideFixedMenu = () => this.setState({ fixed: false });
-  showFixedMenu = () => this.setState({ fixed: true });
+  const { children } = props;
+  const { fixed } = hideFixedMenu;
+  const { currentUser } = useContext(AuthContext);
 
-  render() {
-    const { children } = this.props
-    const { fixed } = this.state
+  useEffect(() => {
+    setRedirectToLogin(false);
+  });
 
-    return (
-        <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
+  return (
+    <Visibility
+      once={false}
+      onBottomPassed={hideFixedMenu}
+      onBottomPassedReverse={() => sethideFixedMenu({ fixed: true })}
+    >
+      {redirectToLogin ? <Redirect to="/login" /> : ""}
+      <Segment
+        inverted
+        textAlign="center"
+        style={{ padding: "1em 0em" }}
+        vertical
+      >
+        <Menu
+          fixed={hideFixedMenu.fixed ? "top" : null}
+          inverted
+          pointing={!hideFixedMenu.fixed}
+          secondary={!hideFixedMenu.fixed}
+          size="large"
         >
-          <Segment
-            inverted
-            textAlign='center'
-            style={{ padding: '1em 0em' }}
-            vertical
-          >
-            <Menu
-              fixed={fixed ? 'top' : null}
-              inverted
-              pointing={!fixed}
-              secondary={!fixed}
-              size='large'
-            >
-              <Container>
-                <Menu.Item className="logo" as="a" href="/">
-                  <Image src={logo} size='large' />
-                </Menu.Item>
-                <Menu.Item as='a' href="/" active>
-                  Startseite
-                </Menu.Item>
-                <Menu.Item as='a'>Seiten</Menu.Item>
-                <Menu.Item as='a'>User</Menu.Item>
-                <Menu.Item as='a'>Hilfe</Menu.Item>
+          <Container>
+            <Menu.Item className="logo" as="a" href="/">
+              <Image src={logo} size="large" />
+            </Menu.Item>
+            <Menu.Item as="a" href="/" active>
+              Startseite
+            </Menu.Item>
+            <Menu.Item as="a">Seiten</Menu.Item>
+            <Menu.Item as="a">User</Menu.Item>
+            <Menu.Item as="a">Hilfe</Menu.Item>
 
-                <Menu.Item position='right'>
-                  <Input inverted icon='search' placeholder='Suche...' style={{marginRight: "30px"}}/>
-
-                  <Button as='a' inverted>
-                    Anmelden
-                  </Button>
-                </Menu.Item>
-              </Container>
-            </Menu>
-          </Segment>
-        </Visibility>
-    )
-  }
-}
+            <Menu.Item position="right">
+              <Input
+                inverted
+                icon="search"
+                placeholder="Suche..."
+                style={{ marginRight: "30px" }}
+              />
+              {currentUser ? (
+                <Button as="a" inverted onClick={() => app.auth().signOut()}>
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  as="a"
+                  inverted
+                  onClick={() => setRedirectToLogin(true)}
+                >
+                  Anmelden
+                </Button>
+              )}
+            </Menu.Item>
+          </Container>
+        </Menu>
+      </Segment>
+    </Visibility>
+  );
+};
 
 export default Navigation;
