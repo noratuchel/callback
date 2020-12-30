@@ -22,19 +22,19 @@ import Footer from "./templates/Footer";
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Navigation />
-        <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/page/:page" component={Page} />
-          <Route exact path="/article/:article" component={Article} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/404" />
-          <Redirect to="/404" />
-        </Switch>
-        <Footer />
-      </Router>
+    <Router>
+      <Navigation />
+      <Switch>
+        <Route exact path={["/", "/home"]} component={Home} />
+        <Route exact path="/page/:page" component={Page} />
+        <Route exact path="/article/:article" component={Article} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/404" />
+        <Redirect to="/404" />
+      </Switch>
+      <Footer />
+    </Router>
     </AuthProvider>
   );
 }
