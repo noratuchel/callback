@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import app from "../base.js";
 import { Redirect } from "react-router-dom";
+
+import { AuthContext } from "../Auth.js";
 
 const Signup = ({ history }) => {
   const [redirectToLogin, setRedirectToLogin] = useState(false);
@@ -17,6 +19,11 @@ const Signup = ({ history }) => {
       alert(error);
     }
   };
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div>
