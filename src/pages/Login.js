@@ -23,27 +23,46 @@ const Login = () => {
     return <Redirect to="/" />;
   }
   return (
-    <div>
+    <div
+      style={{
+        padding: "30px",
+        marginTop: "50px",
+        color: "#ffff",
+        backgroundColor: "#1b1c1d",
+        borderRadius: "10px",
+        marginRight: "30%",
+        marginLeft: "30%",
+      }}
+    >
       {redirectToSignup ? <Redirect to="/signup" /> : ""}
-      <h1>Log in</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email
+      <h1 style={{ textAlign: "center" }}>Log in</h1>
+      <form
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+        onSubmit={handleLogin}
+      >
+        <div class="ui input" style={{ margin: "5px" }}>
           <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
+        </div>
+        <div class="ui input" style={{ margin: "5px" }}>
           <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Log in</button>
-
+        </div>
         <button
-          style={{ marginLeft: "50px" }}
+          class="ui primary button"
+          style={{ margin: "5px" }}
+          type="submit"
+        >
+          Log in
+        </button>
+      </form>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          class="ui primary button"
+          style={{ margin: "30px" }}
           onClick={() => setRedirectToSignup(true)}
         >
           Registrieren
         </button>
-      </form>
+      </div>
     </div>
   );
 };
