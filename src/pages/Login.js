@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
-import app from "../base.js";
-import { AuthContext } from "../Auth.js";
+import React, { useContext, useState } from "react";
 import { Redirect } from "react-router";
+import { AuthContext } from "../Auth.js";
+import app from "../base.js";
 
 const Login = () => {
+  const [redirectToSignup, setRedirectToSignup] = useState(false);
+
   const handleLogin = async (event) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
@@ -22,6 +24,7 @@ const Login = () => {
   }
   return (
     <div>
+      {redirectToSignup ? <Redirect to="/signup" /> : ""}
       <h1>Log in</h1>
       <form onSubmit={handleLogin}>
         <label>
@@ -33,6 +36,13 @@ const Login = () => {
           <input name="password" type="password" placeholder="Password" />
         </label>
         <button type="submit">Log in</button>
+
+        <button
+          style={{ marginLeft: "50px" }}
+          onClick={() => setRedirectToSignup(true)}
+        >
+          Registrieren
+        </button>
       </form>
     </div>
   );

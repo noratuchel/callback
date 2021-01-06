@@ -1,22 +1,18 @@
-import React from 'react';
-
-import API from '../system/ApiConnector.js';
-
-import {
-  Segment,
-  List,
-  Button,
-  Icon,
-  Loader,
-  Header,
-} from 'semantic-ui-react';
+import React from "react";
+import { Button, Header, Icon, List, Loader, Segment } from "semantic-ui-react";
+import API from "../system/ApiConnector.js";
 
 class PageItem extends React.Component {
   render() {
     return (
-      <List.Item as="a" href={"/page/" + this.props.page} page={ this.props.page } key={ this.props.page }>
+      <List.Item
+        as="a"
+        href={"/page/" + this.props.page}
+        page={this.props.page}
+        key={this.props.page}
+      >
         <List.Content>
-          <List.Header>{ this.props.name }</List.Header>
+          <List.Header>{this.props.name}</List.Header>
         </List.Content>
       </List.Item>
     );
@@ -29,20 +25,20 @@ class PageNav extends React.Component {
 
     this.state = {
       loading: true,
-      pages: []
+      pages: [],
     };
   }
 
   componentDidMount() {
     let obj = this;
 
-    API.getBlog(function(res) {
-      API.getPages(res.id, function(pages) {
+    API.getBlog(function (res) {
+      API.getPages(res.id, function (pages) {
         for (let i in pages.items) {
           let el = pages.items[i];
           obj.createItem(el.title, el.id);
         }
-      })
+      });
     });
   }
 
@@ -52,24 +48,27 @@ class PageNav extends React.Component {
 
     this.setState({
       loading: false,
-      pages: pages
+      pages: pages,
     });
   }
 
   render() {
     return (
       <div>
-        <Segment inverted style={{minHeight: "0"}}>
-          <Header as='h3'>Unterseiten</Header>
-          <Loader size="small" active={this.state.loading}/>
+        <Segment inverted style={{ minHeight: "0" }}>
+          <Header as="h3">Unterseiten</Header>
+          <Loader size="small" active={this.state.loading} />
           <List divided inverted relaxed>
-            { this.state.pages }
+            {this.state.pages}
           </List>
         </Segment>
-
-        <Button style={{width:"100%"}} color='grey' inverted={true}>
-          <Icon name='add' /> Post erstellen
-        </Button>
+        {this.props.currentUser ? (
+          <Button style={{ width: "100%" }} color="grey" inverted={true}>
+            <Icon name="add" /> Post erstellen
+          </Button>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
