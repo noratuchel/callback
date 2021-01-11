@@ -15,6 +15,7 @@ import Article from "./pages/Article";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Search from "./pages/Search";
+import Terms from "./pages/Terms";
 
 import Navigation from "./templates/Navigation";
 import Footer from "./templates/Footer";
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/article/:article" component={Article} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/tos" component={Terms} />
         <Route exact path="/404" />
         <Redirect to="/404" />
       </Switch>

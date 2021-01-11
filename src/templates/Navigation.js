@@ -49,10 +49,6 @@ const Navigation = (props) => {
             <Menu.Item as="a" href="/" active>
               Startseite
             </Menu.Item>
-            <Menu.Item as="a">Seiten</Menu.Item>
-            <Menu.Item as="a">User</Menu.Item>
-            <Menu.Item as="a">Hilfe</Menu.Item>
-
             <Menu.Item position="right">
               <SearchBar />
               {currentUser ? (

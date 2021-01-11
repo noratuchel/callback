@@ -14,17 +14,14 @@ function Footer() {
       <Container textAlign='center'>
         <Image centered size='tiny' src={logo} />
         <List horizontal inverted divided link size='small'>
-          <List.Item as='a' href='#'>
-            Site Map
+          <List.Item as='a' href='/'>
+            Startseite
           </List.Item>
-          <List.Item as='a' href='#'>
-            Contact Us
+          <List.Item as='a' href='/tos'>
+            Datenschutz
           </List.Item>
-          <List.Item as='a' href='#'>
-            Terms and Conditions
-          </List.Item>
-          <List.Item as='a' href='#'>
-            Privacy Policy
+          <List.Item as='a' href='/page/758862531287961967'>
+            Über uns
           </List.Item>
         </List>
       </Container>

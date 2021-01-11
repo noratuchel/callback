@@ -30,6 +30,11 @@ class Search extends React.Component {
     });
 
     this.refreshSearch();
+    this._ismounted = true;
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
   }
 
   refreshSearch() {
@@ -52,14 +57,16 @@ class Search extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.match.params.search !== this.state.searchParam) {
-      this.setState({
-        loading: true,
-        searchParam: this.props.match.params.search,
-        searchData: []
-      });
+    if (this._ismounted) {
+      if (this.props.match.params.search !== this.state.searchParam) {
+        this.setState({
+          loading: true,
+          searchParam: this.props.match.params.search,
+          searchData: []
+        });
 
-      this.refreshSearch();
+        this.refreshSearch();
+      }
     }
   }
 
