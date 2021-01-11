@@ -14,6 +14,7 @@ import Page from "./pages/Page";
 import Article from "./pages/Article";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Search from "./pages/Search";
 
 import Navigation from "./templates/Navigation";
 import Footer from "./templates/Footer";
@@ -27,6 +28,7 @@ function App() {
       <Switch>
         <Route exact path={["/", "/home"]} component={Home} />
         <Route exact path="/page/:page" component={Page} />
+        <Route exact path="/search/:search" component={Search} />
         <Route exact path="/article/:article" component={Article} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />

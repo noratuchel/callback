@@ -47,6 +47,20 @@ class ApiConnector {
     });
   }
 
+  /* Search for posts */
+  getSearchResults(blogId, searchQuery, cb) {
+    fetch(this.baseUrl + "/blogs/" + blogId + "/posts/search?q=" + searchQuery + "&key=" + Config.API_TOKEN, {
+      // credentials: 'include',
+      method: 'GET',
+      headers: {'Content-Type': 'application/json', 'Authorization': Config.API_TOKEN},
+      //body: JSON.stringify(sampledata),
+    })
+    .then(res => res.json())
+    .then(function(res) {
+      cb(res);
+    });
+  }
+
   /* Get articles */
   getArticles(blogId, cb) {
     fetch(this.baseUrl + "/blogs/" + blogId + "/posts?key=" + Config.API_TOKEN, {

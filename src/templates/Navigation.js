@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import SearchBar from '../templates/SearchBar';
 import {
   Button,
   Container,
   Image,
-  Input,
   Menu,
   Segment,
   Visibility,
@@ -17,18 +17,15 @@ const Navigation = (props) => {
   const [hideFixedMenu, sethideFixedMenu] = useState({ fixed: false });
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
-  const { children } = props;
-  const { fixed } = hideFixedMenu;
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     setRedirectToLogin(false);
-  });
+  }, []);
 
   return (
     <Visibility
       once={false}
-      onBottomPassed={hideFixedMenu}
       onBottomPassedReverse={() => sethideFixedMenu({ fixed: true })}
     >
       {redirectToLogin ? <Redirect to="/login" /> : ""}
@@ -57,12 +54,7 @@ const Navigation = (props) => {
             <Menu.Item as="a">Hilfe</Menu.Item>
 
             <Menu.Item position="right">
-              <Input
-                inverted
-                icon="search"
-                placeholder="Suche..."
-                style={{ marginRight: "30px" }}
-              />
+              <SearchBar />
               {currentUser ? (
                 <Button as="a" inverted onClick={() => app.auth().signOut()}>
                   Logout
