@@ -6,8 +6,6 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_API);
-console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_API);
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(<App />, document.getElementById("blog-app"));
 
