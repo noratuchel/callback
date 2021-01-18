@@ -1,13 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactGA from "react-ga";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('blog-app')
-);
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_API);
+console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_API);
+ReactGA.pageview(window.location.pathname + window.location.search);
+
+ReactDOM.render(<App />, document.getElementById("blog-app"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
