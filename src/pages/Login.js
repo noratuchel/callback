@@ -11,7 +11,6 @@ const Login = () => {
     const { email, password } = event.target.elements;
     try {
       await app.auth().signInWithEmailAndPassword(email.value, password.value);
-      console.log("redirect");
     } catch (error) {
       alert(error);
     }
