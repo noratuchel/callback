@@ -1,4 +1,5 @@
 import { createBrowserHistory } from "history";
+import ReactGA from "react-ga";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -15,7 +16,6 @@ import Page from "./pages/Page";
 import Signup from "./pages/Signup";
 import Footer from "./templates/Footer";
 import Navigation from "./templates/Navigation";
-
 // import API from './system/ApiConnector.js';
 
 const history = createBrowserHistory();
