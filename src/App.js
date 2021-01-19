@@ -27,7 +27,7 @@ history.listen((location) => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router history={history}>
         <Navigation />
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
